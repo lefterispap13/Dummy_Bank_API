@@ -19,14 +19,14 @@ public class AccountTransactionHistoryController {
     @Autowired
     AccountTransactionHistoryServiceImpl accountTransactionHistoryServiceImpl;
 
-    // list of all the Transactions
+    // list of all the Transactions not needed for bookstore
         @GetMapping(value="/getall")
         public AccountTransactionHistoryResponse getAll(){
             log.info("Ready to find all the Transactions");
             return new AccountTransactionHistoryResponse("Found all the Transactions",accountTransactionHistoryServiceImpl.getAll());
         }
 
-        // get Transaction by id
+        // get Transaction by id not needed for bookstore
         @GetMapping(value="/getbyid/{id}")
         public AccountTransactionHistoryResponse getById(@PathVariable Long id){
             log.info("Ready to find Transaction by id");

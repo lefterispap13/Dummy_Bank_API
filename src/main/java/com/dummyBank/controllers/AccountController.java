@@ -21,21 +21,21 @@ public class AccountController {
     private AccountServiceImpl accountServiceImpl;
 
 
-    // list of all the accounts
+    // list of all the accounts not needed for bookstore
     @GetMapping(value="/getall")
     public AccountResponse getAll(){
         log.info("Ready to find all the Accounts");
         return new AccountResponse("Found all the Accounts",accountServiceImpl.getAll());
     }
 //
-    // get account by id
+    // get account by id not needed for bookstore
     @GetMapping(value="/getbyid/{id}")
     public AccountResponse getById(@PathVariable Long id){
         log.info("Ready to find account by id");
         return new AccountResponse("Found the account",accountServiceImpl.getAccountById(id));
     }
 
-    //create new account
+    //create new account not needed for bookstore
     @PostMapping(value="/new",consumes = "application/json",
             produces = "application/json")
     public AccountResponse createNewAccount(@RequestBody AccountRequest request){
@@ -44,7 +44,7 @@ public class AccountController {
         return new AccountResponse("The account has been saved",accountId);
     }
 
-    // update account with id
+    // update account with id not needed for bookstore
     @PutMapping(value="/update/{id}",consumes = "application/json", produces = "application/json")
     public Response updateExistingAccount(@PathVariable(value = "id") Long id,
                                           @RequestBody AccountRequest request){
@@ -56,7 +56,7 @@ public class AccountController {
         return new Response("The account has been updated");
     }
 
-    // delete account by id
+    // delete account by id not needed for bookstore
     @DeleteMapping("/delete/{id}")
     public Response deleteAccount(@PathVariable Long id){
         log.info("Ready to delete an account");

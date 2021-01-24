@@ -9,19 +9,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
-
 import static java.util.Objects.isNull;
 
 @Slf4j
 @Service
 public class CardDetailsServiceImpl implements ICardDetailsService{
+
     @Autowired
     CardDetailsRepository cardDetailsRepository;
+
     @Autowired
     AccountRepository accountRepository;
+
     @Autowired
     AccountTransactionHistoryServiceImpl accountTransactionHistoryServiceImpl;
+
     @Override
     public List<CardDetails> getAll() {
         log.info("Ready to get all the cardDetails");
@@ -62,8 +64,6 @@ public class CardDetailsServiceImpl implements ICardDetailsService{
         //one method that finds the card details by card number if they exist
         CardDetails checkCard=cardDetailsRepository.findCardDetailsByCardNumber(request.getCardNumber());
         log.info(""+checkCard);
-        log.info("time of check"+checkCard.getExpirationDate().getTime());
-        log.info("request "+request.getExpirationDate().getTime());
         if (checkCard==null){
             log.info("1 card doesn't exist");
             return 0L;// card doesn't exist
@@ -100,17 +100,6 @@ public class CardDetailsServiceImpl implements ICardDetailsService{
                 log.info(" request "+request.getExpirationDate());
                 return 0L;
             }
-//            int month=checkCard.getExpirationDate().getMonth();
-//            int year=checkCard.getExpirationDate().getYear();
-//            int month2=request.getExpirationDate().getMonth();
-//            int year2=request.getExpirationDate().getYear();
-//            log.info("month "+month+" year "+year+" day "+checkCard.getExpirationDate().getDay());
-//            if (month==month2){
-//                log.info("qq");
-//            }
-//            log.info("month2 "+month2+ " year2 "+year2 +" day "+request.getExpirationDate().getDay());
-//            log.info("checkard "+checkCard.getExpirationDate());
-//            log.info(" request "+request.getExpirationDate());
             Long accountId=checkCard.getAccount().getAccountId();
 //            log.info("account "+accountId);
             String typeofTransaction=request.getTypeOfTransaction();
@@ -122,7 +111,6 @@ public class CardDetailsServiceImpl implements ICardDetailsService{
             }
             accountTransactionHistoryServiceImpl.createAccountTransactionHistory(6L,"deposit",currencySpent);
         }
-
         return 1L;
     }
     @Override

@@ -116,7 +116,10 @@ public class CardDetailsServiceImpl implements ICardDetailsService{
             String typeofTransaction=request.getTypeOfTransaction();
 //            log.info("type of transaction "+typeofTransaction);
             //The details are correct so the transaction takes place
-            accountTransactionHistoryServiceImpl.createAccountTransactionHistory(accountId,typeofTransaction,currencySpent);
+            String transactionMessage=accountTransactionHistoryServiceImpl.createAccountTransactionHistory(accountId,typeofTransaction,currencySpent);
+            if (transactionMessage.equals("The transaction was invalid")){
+                return 0L;
+            }
             accountTransactionHistoryServiceImpl.createAccountTransactionHistory(6L,"deposit",currencySpent);
         }
 

@@ -2,6 +2,8 @@ package com.dummyBank.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableMBeanExport;
+import org.springframework.jmx.support.RegistrationPolicy;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@EnableMBeanExport(registration= RegistrationPolicy.IGNORE_EXISTING)
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 
